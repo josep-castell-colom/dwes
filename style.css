@@ -1,0 +1,151 @@
+:root {
+  --background-color: antiquewhite;
+  --darkest-color: black;
+  --section-color: #ecddca;
+  --h2-color: rgb(48, 48, 48);
+  --table-secondary-color: rgb(222, 206, 183);
+  --th-color: rgb(214, 192, 162);
+  --code-color: #223;
+}
+
+.dark {
+  --background-color: black;
+  --darkest-color: antiquewhite;
+  --section-color: #171717;
+  --h2-color: rgb(231, 230, 230);
+  --table-secondary-color: rgb(35, 32, 29);
+  --th-color: rgb(86, 77, 65);
+  --code-color: ;
+}
+
+.dark a {
+  color: cadetblue;
+}
+
+html,
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.7rem;
+  background-color: var(--background-color);
+  min-height: 100vh;
+  color: var(--darkest-color);
+}
+
+header {
+  border-bottom: solid 1px var(--darkest-color);
+  padding: 3rem;
+}
+
+header > * {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding: 0.3rem;
+  font-size: 0.8rem;
+  text-align: center;
+  border-top: solid 1px var(--darkest-color);
+}
+
+code {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--code-color);
+}
+
+table {
+  margin: 2rem auto;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: var(--th-color);
+}
+
+th,
+td {
+  padding: 0.5rem 1rem;
+  border: solid 1px var(--darkest-color);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.exercice-section {
+  padding: 5rem 2rem;
+  border-bottom: solid 1px grey;
+  background-image: linear-gradient(
+    to bottom,
+    var(--section-color),
+    var(--background-color)
+  );
+}
+
+.exercice-section:last-of-type {
+  border-bottom: 0;
+}
+
+tr:nth-child(even) {
+  background-color: var(--table-secondary-color);
+}
+
+.exercice-section > h2 {
+  margin: 0 auto;
+  padding: 1rem 0;
+  color: var(--h2-color);
+}
+
+.exercice-section > * {
+  display: block;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.theme-switcher {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  cursor: default;
+}
+
+#theme-light:hover,
+#theme-dark:hover {
+  color: var(--th-color);
+}
+
+.theme-active,
+.theme-active:hover {
+  color: grey !important;
+}
+
+#main-title {
+  border-top: dashed 1px var(--darkest-color);
+  border-left: dashed 1px var(--darkest-color);
+}
+
+#main-subtitle {
+  margin-top: 1.2rem;
+  font-weight: 400;
+  border-bottom: dashed 1px var(--darkest-color);
+  border-right: dashed 1px var(--darkest-color);
+}
+
+#main-title > em {
+  font-style: normal;
+  font-size: 3rem;
+}
