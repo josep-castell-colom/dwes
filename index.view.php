@@ -29,7 +29,7 @@
         El intérprete PHP estará configurado en modo desarrollo, tal que muestre al cliente todos los errores, 'warning', 'notice', etc.
       </p>
       <button onclick="show('tabla-estados-variable')">Mostrar</button>
-      <div id="tabla-estados-variable" class="hidden">
+      <div id="tabla-estados-variable" class="hidden scroll-auto">
         <?php
           print_table();
         ?>

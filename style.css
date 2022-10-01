@@ -17,15 +17,11 @@
   --table-secondary-color: rgb(35, 32, 29);
   --th-color: rgb(86, 77, 65);
   --code-color: ;
-  --error-color: lightcoral;
+  --error-color: rgb(154, 74, 74);
 }
 
 .dark a {
   color: cadetblue;
-}
-
-.dark .error {
-  color: black;
 }
 
 html,
@@ -37,10 +33,10 @@ html,
 
 body {
   margin: 0;
+  overflow-x: hidden;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.7rem;
   background-color: var(--background-color);
-  min-height: 100vh;
   color: var(--darkest-color);
 }
 
@@ -63,7 +59,7 @@ code {
 
 button {
   padding: 0.5rem 1rem;
-  margin: 2rem 0 0;
+  margin: 2rem;
   background-color: var(--background-color);
   border: solid 1px var(--darkest-color);
   color: var(--darkest-color);
@@ -104,7 +100,12 @@ footer {
   display: none !important;
 }
 
+.scroll-auto {
+  overflow: auto;
+}
+
 .error {
+  margin: 0 auto;
   padding: 0.5rem 1rem;
   background-color: var(--error-color);
   border: solid 1px var(--darkest-color);
@@ -173,4 +174,10 @@ tr:nth-child(even) {
 #main-title > em {
   font-style: normal;
   font-size: 3rem;
+}
+
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 13px;
+  }
 }
