@@ -6,6 +6,7 @@
   --table-secondary-color: rgb(222, 206, 183);
   --th-color: rgb(214, 192, 162);
   --code-color: #223;
+  --error-color: rgb(239, 159, 159);
 }
 
 .dark {
@@ -16,10 +17,15 @@
   --table-secondary-color: rgb(35, 32, 29);
   --th-color: rgb(86, 77, 65);
   --code-color: ;
+  --error-color: lightcoral;
 }
 
 .dark a {
   color: cadetblue;
+}
+
+.dark .error {
+  color: black;
 }
 
 html,
@@ -48,21 +54,24 @@ header > * {
   margin: 0 auto;
 }
 
-footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  padding: 0.3rem;
-  font-size: 0.8rem;
-  text-align: center;
-  border-top: solid 1px var(--darkest-color);
-}
-
 code {
   font-family: "Ubuntu Mono", monospace;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--code-color);
+}
+
+button {
+  padding: 0.5rem 1rem;
+  margin: 2rem 0 0;
+  background-color: var(--background-color);
+  border: solid 1px var(--darkest-color);
+  color: var(--darkest-color);
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: var(--table-secondary-color);
 }
 
 table {
@@ -81,8 +90,24 @@ td {
   border: solid 1px var(--darkest-color);
 }
 
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding: 0.3rem;
+  font-size: 0.8rem;
+  text-align: center;
+  border-top: solid 1px var(--darkest-color);
+}
+
 .hidden {
   display: none !important;
+}
+
+.error {
+  padding: 0.5rem 1rem;
+  background-color: var(--error-color);
+  border: solid 1px var(--darkest-color);
 }
 
 .exercice-section {

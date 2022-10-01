@@ -1,4 +1,12 @@
 <?php
+//error handler function
+function customError($errno, $errstr) {
+  echo "<pre class='error'><b>Error:</b> [$errno] $errstr</pre>";
+}
+
+//set error handler
+set_error_handler("customError");
+
 function add_tags($tag, $content){
   return "<$tag>$content</$tag>";
 }
@@ -36,11 +44,10 @@ function print_table(){
       $i++;
     }
     unset($lista[1]);
-
-    // $isset_value = isset($lista[1]) ? "true" : "false";
-    // $empty_value = empty($lista[1]) ? "true" : "false";
-    // $bool_value = $lista[1] ? "true" : "false";
-    // $isnull_value = is_null($lista[1]) ? "true" : "false";
+    $isset_value = isset($lista[1]) ? "true" : "false";
+    $empty_value = empty($lista[1]) ? "true" : "false";
+    $bool_value = $lista[1] ? "true" : "false";
+    $isnull_value = is_null($lista[1]) ? "true" : "false";
     
     echo <<<TEXT
     <tr>
