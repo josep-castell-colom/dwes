@@ -18,7 +18,7 @@
   </header>
   <main>
     <section class="exercice-section">
-      <h2>Práctica guiada C02PG01</h2>
+      <h2 class="exercice-section-title">Práctica guiada C02PG01<pre>[30/09/22]</pre></h2>
       <p>
         Crea una página web (con PHP) que muestre el estado de una variable obtenido al aplicar las funciones <code>isset($var)</code>, <code>empty($var)</code>, <code>(bool) $var</code>, <code>isnull($var)</code> a los valores mostrados en la tabla (una fila para cada valor).
       </p>

@@ -129,10 +129,14 @@ tr:nth-child(even) {
   background-color: var(--table-secondary-color);
 }
 
-.exercice-section > h2 {
+.exercice-section-title {
   margin: 0 auto;
   padding: 1rem 0;
   color: var(--h2-color);
+}
+
+.exercice-section-title > pre {
+  margin: 0;
 }
 
 .exercice-section > * {
