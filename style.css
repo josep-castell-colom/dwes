@@ -127,7 +127,7 @@ footer {
   border-bottom: 0;
 }
 
-tr:nth-child(even) {
+#tabla-estados-variable tr:nth-child(even) {
   background-color: var(--table-secondary-color);
 }
 
@@ -186,10 +186,17 @@ tr:nth-child(even) {
   text-align: center;
 }
 
+#tabla-tablas-multiplicar th,
+#tabla-tablas-multiplicar td {
+  min-width: 63.5px;
+}
+
 #show-multiplication {
+  min-width: 192.5px;
+  min-height: 61px;
   display: inline-block;
   padding: 1rem 1.5rem;
-  color: var(--code-color);
+  color: var(--h2-color);
   background-color: var(--lightest-color);
   border-radius: 10px;
   border: solid 1px var(--darkest-color);

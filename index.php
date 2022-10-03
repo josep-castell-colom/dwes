@@ -16,7 +16,7 @@ function print_table(){
     $lista = [null, 0, true, false, "0", "", "foo", array()];
     $str_lista = ["null", "0", "true", "false", "\"0\"", "\"\"", "\"foo\"", "array()"];
     $i = 0;
-    echo <<<TEXT
+    $output = <<<TEXT
       <table id='var-table'>
         <tr>
           <th>Num. de fila</th>
@@ -33,14 +33,14 @@ function print_table(){
       $empty_value = empty($value) ? "true" : "false";
       $bool_value = $value ? "true" : "false";
       $isnull_value = is_null($value) ? "true" : "false";
-      echo "<tr>" . 
+      $output .= "<tr>" . 
         add_tags("td", $i + 1);
-      echo add_tags("td", add_tags("code", "\$var = $str_lista[$i]")) .
+      $output .= add_tags("td", add_tags("code", "\$var = $str_lista[$i]")) .
         add_tags("td", $isset_value) .
         add_tags("td", $empty_value) .
         add_tags("td", $bool_value) .
         add_tags("td", $isnull_value);
-      echo "</tr>";
+      $output .= "</tr>";
       $i++;
     }
     unset($lista[1]);
@@ -49,7 +49,7 @@ function print_table(){
     $bool_value = $lista[1] ? "true" : "false";
     $isnull_value = is_null($lista[1]) ? "true" : "false";
     
-    echo <<<TEXT
+    $output .= <<<TEXT
     <tr>
     <td>9</td>
     <td><code>unset(\$var)</code></td>
@@ -59,7 +59,8 @@ function print_table(){
     <td>$isnull_value</td>
     TEXT;
     
-    echo "</table>";
+    $output .= "</table>";
+    echo $output;
   } catch (Exception $e) {
     echo $e->getMessage();
   }
@@ -67,21 +68,22 @@ function print_table(){
 
 function tablas_multiplicar($multiplicando, $multiplicador){
   $output = "<table id='multiply-table'><thead><th>*</th>";
-  for($x = 0; $x < $multiplicando; $x++){
+  for($x = 0; $x <= $multiplicando; $x++){
     $output .= "<th id='x$x'>$x</th>";
   }
+  $output .= "<th>x</th>";
 
   $output .= "</thead><tbody>";
 
-  for($y = 0; $y < $multiplicando; $y++){
+  for($y = 0; $y <= $multiplicando; $y++){
     $output .= "<tr id='row-y$y'><th id='y$y'>$y</th>";
-    for($x = 0; $x < $multiplicador; $x++){
+    for($x = 0; $x <= $multiplicador; $x++){
       $output .= "<td id='x$x-y$y' data-x='$x' data-y='$y'>" . $x * $y . "</td>";
     }
     $output .= "</tr>";
   }
   
-  $output .= "</tbody></table>";
+  $output .= "<tr><th>y</th></tr></tbody></table>";
   echo $output;
 }
 

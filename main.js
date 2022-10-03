@@ -12,26 +12,31 @@ document.querySelector(".theme-switcher").addEventListener("click", () => {
 
 document.querySelectorAll("#multiply-table td").forEach(e => {
   e.addEventListener("mouseover", () => {
-    let x = e.dataset.x;
-    let y = e.dataset.y;
+    let x = parseInt(e.dataset.x);
+    let y = parseInt(e.dataset.y);
+
     multiplyTableTd.forEach(td => {
       td.style.backgroundColor = "inherit";
     });
+
     multiplyTableTd.forEach(td => {
-      if (td.dataset.x == x && td.dataset.y <= y) {
+      if (parseInt(td.dataset.x) == x && parseInt(td.dataset.y) <= y) {
         td.style.backgroundColor = "rgba(255,0,0,0.3)";
       }
     });
+
     multiplyTableTd.forEach(td => {
-      if (td.dataset.y == y && td.dataset.x <= x) {
+      if (parseInt(td.dataset.y) == y && parseInt(td.dataset.x) <= x) {
         td.style.backgroundColor = "rgba(255,0,0,0.3)";
       }
     });
+
     multiplyTableTd.forEach(td => {
-      if (td.dataset.x == x && td.dataset.y == y) {
+      if (parseInt(td.dataset.x) == x && parseInt(td.dataset.y) == y) {
         td.style.backgroundColor = "rgba(255,0,0,0.7)";
       }
     });
+
     document.getElementById("show-multiplication").innerText =
       `${x} * ${y} = ` + x * y;
   });

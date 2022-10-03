@@ -37,9 +37,10 @@
     </section>
     <section class="exercice-section">
       <h2 class="exercice-section-title">Tablas de multiplicar<pre>[03/10/22]</pre></h2>
+      <p>Ejemplo de codificación en PHP: generación de tabla de multiplicar del 0 al 10.</p>
       <button onclick="show('tabla-tablas-multiplicar')">Mostrar</button>
       <div id="tabla-tablas-multiplicar" class="hidden scroll-auto">
-        <h3 id="show-multiplication"></h3>
+        <h3 id="show-multiplication">Pasa el ratón sobre la tabla</h3>
         <?php
           tablas_multiplicar(10,10);
         ?>
