@@ -35,6 +35,16 @@
         ?>
       </div>
     </section>
+    <section class="exercice-section">
+      <h2 class="exercice-section-title">Tablas de multiplicar<pre>[03/10/22]</pre></h2>
+      <button onclick="show('tabla-tablas-multiplicar')">Mostrar</button>
+      <div id="tabla-tablas-multiplicar" class="hidden scroll-auto">
+        <h3 id="show-multiplication"></h3>
+        <?php
+          tablas_multiplicar(10,10);
+        ?>
+      </div>
+    </section>
   </main>
   <footer>
     <span><a href="https://www.cifpfbmoll.eu/">CIFP Francesc de Borja Moll</a> - 2022/2023</span>

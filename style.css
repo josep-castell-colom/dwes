@@ -1,6 +1,7 @@
 :root {
   --background-color: antiquewhite;
   --darkest-color: black;
+  --lightest-color: white;
   --section-color: #ecddca;
   --h2-color: rgb(48, 48, 48);
   --table-secondary-color: rgb(222, 206, 183);
@@ -12,6 +13,7 @@
 .dark {
   --background-color: black;
   --darkest-color: antiquewhite;
+  --lightest-color: black;
   --section-color: #171717;
   --h2-color: rgb(231, 230, 230);
   --table-secondary-color: rgb(35, 32, 29);
@@ -178,6 +180,19 @@ tr:nth-child(even) {
 #main-title > em {
   font-style: normal;
   font-size: 3rem;
+}
+
+#tabla-tablas-multiplicar {
+  text-align: center;
+}
+
+#show-multiplication {
+  display: inline-block;
+  padding: 1rem 1.5rem;
+  color: var(--code-color);
+  background-color: var(--lightest-color);
+  border-radius: 10px;
+  border: solid 1px var(--darkest-color);
 }
 
 @media only screen and (max-width: 600px) {

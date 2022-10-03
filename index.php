@@ -17,7 +17,7 @@ function print_table(){
     $str_lista = ["null", "0", "true", "false", "\"0\"", "\"\"", "\"foo\"", "array()"];
     $i = 0;
     echo <<<TEXT
-      <table>
+      <table id='var-table'>
         <tr>
           <th>Num. de fila</th>
           <th>Contenido de <code>\$var</code></th>
@@ -63,6 +63,26 @@ function print_table(){
   } catch (Exception $e) {
     echo $e->getMessage();
   }
+}
+
+function tablas_multiplicar($multiplicando, $multiplicador){
+  $output = "<table id='multiply-table'><thead><th>*</th>";
+  for($x = 0; $x < $multiplicando; $x++){
+    $output .= "<th id='x$x'>$x</th>";
+  }
+
+  $output .= "</thead><tbody>";
+
+  for($y = 0; $y < $multiplicando; $y++){
+    $output .= "<tr id='row-y$y'><th id='y$y'>$y</th>";
+    for($x = 0; $x < $multiplicador; $x++){
+      $output .= "<td id='x$x-y$y' data-x='$x' data-y='$y'>" . $x * $y . "</td>";
+    }
+    $output .= "</tr>";
+  }
+  
+  $output .= "</tbody></table>";
+  echo $output;
 }
 
 require './index.view.php';
