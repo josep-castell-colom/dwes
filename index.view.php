@@ -20,10 +20,10 @@
     <section class="exercice-section">
       <h2 class="exercice-section-title">Práctica guiada C02PG01<pre>[30/09/22]</pre></h2>
       <p>
-        Crea una página web (con PHP) que muestre el estado de una variable obtenido al aplicar las funciones <code>isset($var)</code>, <code>empty($var)</code>, <code>(bool) $var</code>, <code>isnull($var)</code> a los valores mostrados en la tabla (una fila para cada valor).
+        Crea una página web (con PHP) que muestre el estado de una variable obtenido al aplicar las funciones <code>isset($var)</code>, <code>empty($var)</code>, <code>(bool)$var</code>, <code>is_null($var)</code> a los valores mostrados en la tabla (una fila para cada valor).
       </p>
       <p>
-        A esta tabla tienes que añadirle dos columnas: una para <code>isnull()</code> y otra columna, posicionada a la izquierda que indique el número de fila.
+        A esta tabla tienes que añadirle dos columnas: una para <code>is_null()</code> y otra columna, posicionada a la izquierda que indique el número de fila.
       </p>
       <p>
         El intérprete PHP estará configurado en modo desarrollo, tal que muestre al cliente todos los errores, 'warning', 'notice', etc.
@@ -39,8 +39,8 @@
       <h2 class="exercice-section-title">Tablas de multiplicar<pre>[03/10/22]</pre></h2>
       <p>Ejemplo de codificación en PHP: generación de tabla de multiplicar del 0 al 10.</p>
       <button onclick="show('tabla-tablas-multiplicar')">Mostrar</button>
+      <h3 id="show-multiplication" class="hidden">Pasa el ratón sobre la tabla</h3>
       <div id="tabla-tablas-multiplicar" class="hidden scroll-auto">
-        <h3 id="show-multiplication">Pasa el ratón sobre la tabla</h3>
         <?php
           tablas_multiplicar(10,10);
         ?>

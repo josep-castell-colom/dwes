@@ -2,6 +2,13 @@ const multiplyTableTd = document.querySelectorAll("#multiply-table *[data-x]");
 
 function show(element) {
   document.getElementById(element).classList.toggle("hidden");
+  showMultiplication(element);
+}
+
+function showMultiplication(element){
+  if(element === "tabla-tablas-multiplicar"){
+    show("show-multiplication");
+  }
 }
 
 document.querySelector(".theme-switcher").addEventListener("click", () => {
@@ -41,3 +48,11 @@ document.querySelectorAll("#multiply-table td").forEach(e => {
       `${x} * ${y} = ` + x * y;
   });
 });
+
+document.getElementById("multiply-table").addEventListener("mouseout", () => {
+  multiplyTableTd.forEach(td => {
+    td.style.backgroundColor = "inherit";
+  });
+
+  document.getElementById("show-multiplication").innerText = "Pasa el ratón sobre la tabla";
+})
