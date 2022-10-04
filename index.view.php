@@ -46,6 +46,17 @@
         ?>
       </div>
     </section>
+    <section class="exercice-section">
+      <h2 class="exercice-section-title">Formulario<pre>[04/10/22]</pre></h2>
+      <p>Formulario sencillo GET.</p>
+      <form action="form.php" method="get">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre">
+        <label for="edad">Edad: </label>
+        <input type="text" name="edad" id="edad">
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
   </main>
   <footer>
     <span><a href="https://www.cifpfbmoll.eu/">CIFP Francesc de Borja Moll</a> - 2022/2023</span>
