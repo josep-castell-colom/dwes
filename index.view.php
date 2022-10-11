@@ -119,66 +119,6 @@
       ?>
       </form>
     </section>
-    <section class="exercice-section">
-        <h2 class="exercice-section-title">Agenda contactos sin sesiones<pre>[07/10/22]</pre></h2>
-        <p>Formulario sencillo GET.</p>
-        <form action="" method="get">
-          <label for="nombre">Nombre:</label>
-          <input type="text" name="nombre" id="nombre">
-          <label for="telefono">Teléfono: </label>
-          <input type="number" name="telefono" id="telefono">
-          <button type="submit" name="submit" value="true">Enviar</button>
-        <?php
-        if (isset($_GET["submit"])) {
-          $agenda;
-          if (isset($_GET["agenda"])) {
-            $contactos_str = $_GET["agenda"];
-            $nombre = "";
-            $telefono = "";
-            $index = 0;
-            for ($i = 0; $i < strlen($contactos_str); $i++) {
-              switch ($contactos_str[$i]) {
-                case "=": $index++;
-                  break;
-                case "&":
-                  if (!empty($nombre) && !empty($telefono)) {
-                    $agenda[$nombre] = $telefono;
-                  }
-                  $nombre = "";
-                  $telefono = "";
-                  $index = 0;
-                  break;
-                default:
-                  if ($index === 0) {
-                    $nombre .= $contactos_str[$i];
-                  } elseif ($index === 1) {
-                    $telefono .= $contactos_str[$i];
-                  }
-              }
-            }
-          }
-          if (!empty($_GET['nombre']) && !empty($_GET['telefono'])) {
-            $agenda[$_GET['nombre']] = $_GET['telefono']; 
-          }
-          if (!empty($_GET['nombre']) && empty($_GET['telefono'])) {
-            unset($agenda[$_GET['nombre']]); 
-          }
-
-          if (!empty($agenda)) {
-            $value = "";
-            foreach ($agenda as $nombre => $telefono) {
-              $value .= "$nombre=$telefono&";
-            }
-
-            foreach ($agenda as $nombre => $telefono) {
-              echo "<p>Nombre: $nombre</p><p>Teléfono: $telefono";
-            }
-          }
-          echo "<input type='hidden' name='agenda' value='$value'>";
-        }
-      ?>
-      </form>
-    </section>
   </main>
   <footer>
     <span><a href="https://www.cifpfbmoll.eu/">CIFP Francesc de Borja Moll</a> - 2022/2023</span>
