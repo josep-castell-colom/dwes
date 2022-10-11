@@ -56,9 +56,6 @@
         <input type="text" name="edad" id="edad">
         <button type="submit">Enviar</button>
       </form>
-      <?php
-        echo 'Tu nombre es ' . $_GET['nombre'] . '.<br/>Tu edad es ' . $_GET['edad'] . '.';
-      ?>
     </section>
     <section class="exercice-section">
         <h2 class="exercice-section-title">Agenda contactos sin sesiones<pre>[07/10/22]</pre></h2>
@@ -115,7 +112,9 @@
               echo "<p>Nombre: $nombre</p><p>Teléfono: $telefono";
             }
           }
-          echo "<input type='hidden' name='agenda' value='$value'>";
+          if (isset($value)){
+            echo "<input type='hidden' name='agenda' value='$value'>";
+          }
         }
       ?>
       </form>
