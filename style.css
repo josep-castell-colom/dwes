@@ -107,6 +107,20 @@ footer {
   border-top: solid 1px var(--darkest-color);
 }
 
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
+
+.center {
+  justify-content: center;
+  text-align: center;
+}
+
+.column {
+  flex-direction: column;
+}
+
 .hidden {
   display: none !important;
 }
