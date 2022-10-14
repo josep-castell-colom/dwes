@@ -92,8 +92,9 @@ foreach ($newArray as $key => $value) {
 */
 
 ##########################################################################
-
+# TODO
 function todos(){
+  $functions = ["intercambio", "nuevoArrayAscendente"];
 }
 
 ##########################################################################
