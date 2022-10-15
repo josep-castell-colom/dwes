@@ -36,7 +36,7 @@
    echo render(); 
   }
   ?>
-    <a href="../index.php">Volver</a>
+    <a href="../index.php"><button>Volver</button></a>
   </section>
 </body>
 </html>
