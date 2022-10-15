@@ -17,7 +17,7 @@
     <span id="theme-dark">Oscuro</span></span>
   </header>
   <main>
-    <section class="exercice-section">
+    <section class="exercice-section center">
       <h2 class="exercice-section-title">Tablas de multiplicar<pre>[03/10/22]</pre></h2>
       <p>Ejemplo de codificación en PHP: generación de tabla de multiplicar del 0 al 10.</p>
       <button onclick="show('tabla-tablas-multiplicar')">Mostrar</button>
@@ -27,7 +27,7 @@
           tablas_multiplicar(10,10);
         ?>
       </div>
-      <button><a href="../index.php">Volver</a></button>
+      <a href="../index.php"><button>Volver</button></a>
     </section>
   </main>
 </body>

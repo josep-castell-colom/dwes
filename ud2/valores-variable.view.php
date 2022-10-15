@@ -33,7 +33,7 @@
           print_table();
         ?>
       </div>
-      <button><a href="../index.php">Volver</a></button>
+      <a href="../index.php"><button>Volver</button></a>
     </section>
   </main>
 </body>
