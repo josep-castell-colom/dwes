@@ -153,6 +153,10 @@ function quickSort($array){
   foreach ($arrayMayor as $key => $valor) {
     echo "$key -> $valor<br>";
   }
+  echo 'quickSort arrayMenor ##########';
+  quickSort($arrayMenor);
+  echo 'quickSort arrayMayor ##########';
+  quickSort($arrayMayor);
 }
 
 ##########################################################################

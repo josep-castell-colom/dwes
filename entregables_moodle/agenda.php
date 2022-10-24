@@ -14,6 +14,11 @@
     <section class="exercice-section">
       <h2 class="exercice-section-title">Agenda contactos sin sesiones<pre>[07/10/22]</pre></h2>
       <p>Creacion de una agenda de contactos sin usar sesiones ni cookies.</p>
+      <p>
+        Para <b>guardar</b> un contacto introduce un nombre y un teléfono y pulsa Enviar.<br/>
+        Para <b>actualizar</b> un contacto introduce un nombre existente con un número de teléfono distinto.<br/>
+        Para <b>eliminar</b> un contacto introduce un nombre existente sin número de teléfono.
+      </p>
       <form action="" method="get">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" id="nombre">
@@ -67,13 +72,17 @@
              * Comprobación de los valores del formulario.
              */
             if (empty($_GET['nombre'])) {   // Si no se ha introducido el nombre manda un mensaje.
-              echo 'Introduce el nombre';
+              echo '<p>Introduce el nombre</p>';
             }
             if (!empty($_GET['nombre']) && !empty($_GET['telefono'])) {   // Si los dos campos son correctos se establece un nuevo clave/valor en $_GET.
               $agenda[$_GET['nombre']] = $_GET['telefono']; 
             }
             if (!empty($_GET['nombre']) && empty($_GET['telefono'])) {    // Si se introduce un nombre pero no un teléfono se borra el contacto con el mismo nombre.
-              unset($agenda[$_GET['nombre']]); 
+              if (isset($agenda[$_GET['nombre']])) {
+                unset($agenda[$_GET['nombre']]);
+              } else {
+                echo '<p>Usuario no encontrado para eliminar.</p>';
+              }
             }
             /**
              * Se crea una variable 'value' que será el valor del campo oculto y se rellena con toda la información de la agenda.
