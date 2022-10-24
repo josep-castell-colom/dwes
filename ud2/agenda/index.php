@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Página de ejercicios de Josep Maria Castell Colom</title>
+  <title>DWES_formulario agenda - Josep Maria Castell Colom</title>
 </head>
 <body>
   <header>
-    <h1 id="main-title">Página de ejercicios de <em>Josep Maria Castell Colom</em></h1>
+    <h1 id="main-title">DWES_formulario agenda - <em>Josep Maria Castell Colom</em></h1>
     <h2 id="main-subtitle">Desarrollo web entorno servidor - DAW2</h2>
   </header>
   <main>
@@ -74,7 +74,6 @@
       </form>
       <div class="output">
       </div>
-      <a href="../index.php"><button>Volver</button></a>
     </section>
   </main>
 </body>

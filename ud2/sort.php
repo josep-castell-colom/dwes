@@ -21,7 +21,16 @@ function generarArray($min = 0, $max = 10, $quantity = 10){
   return $array;
 }
 
-##########################################################################
+# INTERCAMBIO 
+
+/**
+ * Recorre el array comparando cada elemento con los demás, si encuentra uno mayor, los intercambia.
+ *
+ * @param array Array de números para ser ordenados.
+ *
+ * @return array Array ordenado.
+ *
+ */
 
 function intercambio($array) {
   for ($i = 0; $i < count($array); $i++) {
@@ -36,24 +45,19 @@ function intercambio($array) {
   return $array;
 }
 
-/*
+# SELECCIÓN DIRECTA CON NUEVO ARRAY 
 
-echo "<h1>Ordenacion por intercambio</h1>";
-echo "<p>Recorre el array comparando cada elemento con los demás, si encuentra uno menor, los intercambia.</p>";
-
-echo "<h2>Array original</h2>";
-foreach ($array as $key => $value) {
-  echo "$key => <b>$value</b><br/>";
-}
-
-echo "<h2>Nuevo array</h2>";
-foreach ($newArray as $key => $value) {
-  echo "$key => <b>$value</b><br/>";
-}
-
-*/
-
-##########################################################################
+/**
+ * Selecciona el elemento cuyo valor es el más pequeño de todo el array y lo introduce en un nuevo array.
+ *
+ * Se crea un array vacío el cual se irá rellenando con el valor más pequeño del array recibido, eliminándolo de éste.
+ * Cuando el array recibido esté vacío el nuevo array estará completo y ordenado.
+ *
+ * @param array Array de números para ser ordenados.
+ *
+ * @return array Array ordenado.
+ *
+ */
 
 function nuevoArrayAscendente($array) {
   $nuevoArray = [];
@@ -72,29 +76,39 @@ function nuevoArrayAscendente($array) {
   return $nuevoArray;
 }
 
-# $newArray=nuevoArrayAscendente($array);
+# SELECCIÓN DIRECTA
 
-/*
+/**
+ * Selecciona el elemento cuyo valor es el más pequeño y lo intercambia por el primero, continua por el segundo y así sucesivamente.
+ *
+ * @param array Array de números para ser ordenados.
+ *
+ * @return array Array ordenado.
+ *
+ */
 
-echo "<h1>Ordenacion por nuevo array (ascendente)</h1>";
-echo "<p>Recorre el array buscando el elemento menor; con el que va rellenando un nuevo array y elimina este elemento del primer array.";
-
-echo "<h2>Array original</h2>";
-foreach ($array as $key => $value) {
-  echo "$key => <b>$value</b><br/>";
+function seleccionDirecta($array){
+  $min_key = 0;
+  $index = 0;
+  while ($index < count($array)) {
+    $min_value = $array[$index];
+    for ($i = $index; $i < count($array); $i++) {
+      if ($array[$i] <= $min_value) {
+        $min_value = $array[$i];
+        $min_key = $i;
+      } 
+    }
+    array_splice($array, $index, 0, $min_value);
+    array_splice($array, $min_key + 1, 1);
+    $index++;
+  }
+  return $array;
 }
-
-echo "<h2>Nuevo array</h2>";
-foreach ($newArray as $key => $value) {
-  echo "$key => <b>$value</b><br/>";
-}
-
-*/
 
 ##########################################################################
 # TODO
 function todos(){
-  $functions = ["intercambio", "nuevoArrayAscendente"];
+  $functions = ["intercambio", "nuevoArrayAscendente", "seleccionDirecta"];
 }
 
 ##########################################################################
@@ -104,6 +118,7 @@ function render(){
   $max = $_GET['max'] ?: "10";
   $quantity = $_GET['cantidad'] ?: "10";
   $metodo = $_GET['metodo'];
+  $output;
 
   $array = generarArray($min, $max, $quantity);
 
@@ -111,10 +126,11 @@ function render(){
     echo "<p class='error'>No ha sido posible generar el array</p>";
     return false;
   }
+
   $arrayOrdenado = $metodo($array);
 
   $output = "<h2 class='center'>Conjunto de $quantity números entre el $min y el $max.</h2>";
-  $output .= "<div class='flex'><div class='flex center column'><h3>Array generado:</h3><table>";
+  $output .= "<div class='flex'><div class=''><h3>Array generado:</h3><table>";
 
   foreach ($array as $key => $value) {
     $output .= "<tr><td>Posición " . $key + 1 . "=> $value</td></tr>";

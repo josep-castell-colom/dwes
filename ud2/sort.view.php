@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Algoritmos de ordenación - Josep Maria Castell Colom</title>
   <link rel="stylesheet" href="../style.css">
+  <script src="../main.js" defer></script>
 </head>
 <body>
   <header>
@@ -27,6 +28,7 @@
       <select name="metodo" id="metodo">
         <option value="intercambio">Intercambio</option>
         <option value="nuevoArrayAscendente">Nuevo array ascendente</option>
+        <option value="seleccionDirecta">Selección directa</option>
         <option value="todos" disabled>Comparar todos los métodos</option>
       </select>
       <input type="submit" name="enviar" value="Enviar">
