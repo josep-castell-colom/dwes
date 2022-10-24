@@ -21,8 +21,22 @@
         <input type="number" name="telefono" id="telefono">
         <button type="submit" name="submit" value="true">Enviar</button>
         <?php
+
+/**
+ * @author Josep Maria Castell Colom
+ *
+ * Formulario básico para guardar contactos telefónicos sin usar sesiones ni cookies.
+ *
+ */
+
+          /**
+           * Si si se encuentra algún valor para la clave 'submit' significa que se ha enviado el formulario.
+           */
           if (isset($_GET["submit"])) {
             $agenda;
+            /**
+             * Si se encuentra la clave 'agenda' se recupera la información anterior.
+             */
             if (isset($_GET["agenda"])) {
               $contactos_str = $_GET["agenda"];
               $nombre = "";
@@ -49,23 +63,37 @@
                 }
               }
             }
-            if (!empty($_GET['nombre']) && !empty($_GET['telefono'])) {
+            /**
+             * Comprobación de los valores del formulario.
+             */
+            if (empty($_GET['nombre'])) {   // Si no se ha introducido el nombre manda un mensaje.
+              echo 'Introduce el nombre';
+            }
+            if (!empty($_GET['nombre']) && !empty($_GET['telefono'])) {   // Si los dos campos son correctos se establece un nuevo clave/valor en $_GET.
               $agenda[$_GET['nombre']] = $_GET['telefono']; 
             }
-            if (!empty($_GET['nombre']) && empty($_GET['telefono'])) {
+            if (!empty($_GET['nombre']) && empty($_GET['telefono'])) {    // Si se introduce un nombre pero no un teléfono se borra el contacto con el mismo nombre.
               unset($agenda[$_GET['nombre']]); 
             }
-
+            /**
+             * Se crea una variable 'value' que será el valor del campo oculto y se rellena con toda la información de la agenda.
+             * El formato es nombre=telefono&
+             */
             if (!empty($agenda)) {
               $value = "";
               foreach ($agenda as $nombre => $telefono) {
                 $value .= "$nombre=$telefono&";
               }
-
+              /**
+               * Se imprime la información de la agenda.
+               */
               foreach ($agenda as $nombre => $telefono) {
                 echo "<p>Nombre: $nombre</p><p>Teléfono: $telefono";
               }
             }
+            /**
+             * Se añade el campo oculto del formulario con el valor previamente generado.
+             */
             if (isset($value)){
               echo "<input type='hidden' name='agenda' value='$value'>";
             }
