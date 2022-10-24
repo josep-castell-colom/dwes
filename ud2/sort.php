@@ -105,6 +105,56 @@ function seleccionDirecta($array){
   return $array;
 }
 
+# MÉTODO BURBUJA
+
+function burbuja($array) {
+  if (count($array) > 1) {
+    $fin = false;
+    $contador = 0;
+    while (!$fin) {
+      $fin = true;
+      for ($i = 0; $i < count($array) - 1; $i++) {
+        if ($array[$i] > $array[$i + 1]) {
+          $min = $array[$i + 1];
+          array_splice($array, $i + 1, 1, $array[$i]);
+          array_splice($array, $i, 1, $min);
+          $fin = false;
+        }
+      }
+      $contador++;
+    }
+  }
+  return $array;
+}
+
+# QUICK SORT
+
+function quickSort($array){
+  $pivote = $array[0];
+  $arrayMenor = [];
+  $arrayMayor = [];
+  echo "array generado: <br>";
+  foreach ($array as $key => $value) {
+    echo "$key -> $value<br>";
+  }
+  echo "pivote = $pivote<br>";
+  foreach ($array as $valor) {
+    if ($valor < $pivote) {
+      array_push($arrayMenor, $valor);
+    } else {
+      array_push($arrayMayor, $valor);
+    }
+  }
+  echo "arrayMenor:<br>";
+  foreach ($arrayMenor as $key => $valor) {
+    echo "$key -> $valor<br>";
+  }
+  echo "arrayMayor:<br>";
+  foreach ($arrayMayor as $key => $valor) {
+    echo "$key -> $valor<br>";
+  }
+}
+
 ##########################################################################
 # TODO
 function todos(){
