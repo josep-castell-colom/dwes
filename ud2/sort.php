@@ -259,7 +259,7 @@ function render(){
     return false;
   }
 
-  $output = "<div><h2 class='center'>Conjunto de $quantity números entre el $min y el $max.</h2>";
+  $output = "<div><h2 class='center'>Conjunto de $quantity números entre el $min y el $max</h2>";
 
   if ($metodo === "todos") {
     $output .= "Comparación de los tiempos de ejecución y número de iteraciones de los diferentes algoritmos de ordenación.";
