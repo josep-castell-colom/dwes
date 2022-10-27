@@ -30,8 +30,8 @@
         <option value="nuevoArrayAscendente">Nuevo array ascendente</option>
         <option value="seleccionDirecta">Selección directa</option>
         <option value="burbuja">Burbuja</option>
-        <option value="quickSort">QuickSort</option>
-        <option value="todos" disabled>Comparar todos los métodos</option>
+        <option value="quickSortWrap">QuickSort</option>
+        <option value="todos">Comparar todos los métodos</option>
       </select>
       <input type="submit" name="enviar" value="Enviar">
     </form>
