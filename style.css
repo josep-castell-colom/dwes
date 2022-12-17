@@ -119,6 +119,11 @@ footer {
   border-top: solid 1px var(--darkest-color);
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 .flex {
   display: flex;
   justify-content: space-around;

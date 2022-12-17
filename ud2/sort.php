@@ -163,9 +163,11 @@ function burbuja($array) {
       $fin = true;
       for ($i = 0; $i < count($array) - 1; $i++) {
         if ($array[$i] > $array[$i + 1]) {
-          $min = $array[$i + 1];
-          array_splice($array, $i + 1, 1, $array[$i]);
-          array_splice($array, $i, 1, $min);
+          $aux = $array[$i + 1];
+          $array[$i + 1] = $array[$i];
+          $array[$i] = $aux;
+          // array_splice($array, $i + 1, 1, $array[$i]);
+          // array_splice($array, $i, 1, $min);
           $fin = false;
         }
       }
