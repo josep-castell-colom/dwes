@@ -4,6 +4,7 @@
 /ud6/prueba-laravel/public/build
 /ud6/prueba-laravel/public/hot
 /ud6/prueba-laravel/public/storage
+/ud6/prueba-laravel/public/plugins
 /ud6/prueba-laravel/storage/*.key
 /ud6/prueba-laravel/vendor
 /ud6/prueba-laravel/.env
