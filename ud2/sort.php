@@ -1,4 +1,5 @@
 <?php
+$array_predefinido = [5, 2, -2, 7, 1, 0, 9, 4, 6, 3, 8, -5, -1, 10, -3, -4];
 
 /**
  * Comprueba si los valores recibidos son correctos.
@@ -13,7 +14,8 @@
  * @param int $quantity
  *
  */
-function comprobarValores($min, $max, $quantity) {
+function comprobarValores($min, $max, $quantity)
+{
   if ($min < $max && $quantity <= $max - $min) {
     return true;
   }
@@ -32,12 +34,13 @@ function comprobarValores($min, $max, $quantity) {
  * @return array Array de números enteros aleatorios.
  *
  */
-function generarArray($min = 0, $max = 10, $quantity = 10){
+function generarArray($min = 0, $max = 10, $quantity = 10)
+{
   if (!comprobarValores($min, $max, $quantity)) return false;
   $array = [];
   for ($i = 0; $i < $quantity; $i++) {
     $randomNumber = rand($min, $max);
-    if (!in_array($randomNumber, $array)){
+    if (!in_array($randomNumber, $array)) {
       array_push($array, $randomNumber);
     } else {
       $i--;
@@ -54,7 +57,8 @@ function generarArray($min = 0, $max = 10, $quantity = 10){
  * @return array Array de números ordenados + num. de iteraciones en índice 1 
  *         + tiempo de ejecución en índice 0.
  */
-function intercambio($array) {
+function intercambio($array)
+{
   $start = microtime(true);
   $counter = 0;
   for ($i = 0; $i < count($array); $i++) {
@@ -66,7 +70,7 @@ function intercambio($array) {
         $array[$i] = $min;
       }
     }
-  } 
+  }
   $end = microtime(true);
   $time = $end - $start;
   array_unshift($array, $time, $counter);
@@ -87,10 +91,11 @@ function intercambio($array) {
  * @return array Array de números ordenados + num. de iteraciones en índice 1 
  *         + tiempo de ejecución en índice 0.
  */
-function nuevoArrayAscendente($array) {
-  $start = microtime(true);
+function nuevoArrayAscendente($array)
+{
   $counter = 0;
   $nuevoArray = [];
+  $start = microtime(true);
   while (!empty($array)) {
     $counter++;
     $min_value = $array[0];
@@ -120,11 +125,12 @@ function nuevoArrayAscendente($array) {
  * @return array Array de números ordenados + num. de iteraciones en índice 1 
  *         + tiempo de ejecución en índice 0.
  */
-function seleccionDirecta($array){
-  $start = microtime(true);
+function seleccionDirecta($array)
+{
   $counter = 0;
   $min_key = 0;
   $index = 0;
+  $start = microtime(true);
   while ($index < count($array)) {
     $counter++;
     $min_value = $array[$index];
@@ -132,10 +138,13 @@ function seleccionDirecta($array){
       if ($array[$i] <= $min_value) {
         $min_value = $array[$i];
         $min_key = $i;
-      } 
+      }
     }
-    array_splice($array, $index, 0, $min_value);
-    array_splice($array, $min_key + 1, 1);
+    $aux = $array[$index];
+    $array[$index] = $min_value;
+    $array[$min_key] = $aux;
+    // array_splice($array, $index, 0, $min_value);
+    // array_splice($array, $min_key + 1, 1);
     $index++;
   }
   $end = microtime(true);
@@ -153,9 +162,10 @@ function seleccionDirecta($array){
  * @return array Array de números ordenados + num. de iteraciones en índice 1 
  *         + tiempo de ejecución en índice 0.
  */
-function burbuja($array) {
-  $start = microtime(true);
+function burbuja($array)
+{
   $counter = 0;
+  $start = microtime(true);
   if (count($array) > 1) {
     $fin = false;
     while (!$fin) {
@@ -188,7 +198,8 @@ function burbuja($array) {
  *
  * @return array Array de números ordenados + número de iteraciones en el índice 0.
  */
-function quickSort($array){
+function quickSort($array)
+{
   static $counter = 0;
   if (count($array) <= 1) {
     return $array;
@@ -216,7 +227,8 @@ function quickSort($array){
  *
  * @return array Array ordenado por quickSort + tiempo de ejecución en el índice 0.
  */
-function quickSortWrap($array) {
+function quickSortWrap($array)
+{
   $start = microtime(true);
   $nuevoArray = quickSort($array);
   $end = microtime(true);
@@ -225,11 +237,11 @@ function quickSortWrap($array) {
   return $nuevoArray;
 }
 
-# TODO
-function todos($array){
+function todos($array)
+{
   $functions = [
-    "intercambio", 
-    "nuevoArrayAscendente", 
+    "intercambio",
+    "nuevoArrayAscendente",
     "seleccionDirecta",
     "burbuja",
     "quickSortWrap"
@@ -238,7 +250,7 @@ function todos($array){
 
   $output .= "<th>Algoritmo</th><th>Tiempo de ejecución</th><th>Iteraciones</th>";
 
-  foreach($functions as $function){
+  foreach ($functions as $function) {
     $resultado = $function($array);
     $output .= "<tr><td>$function</td><td>$resultado[0]</td><td>$resultado[1]</td></tr>";
   }
@@ -247,53 +259,107 @@ function todos($array){
 
 ##########################################################################
 
-function render(){
-  $min = $_GET['min'] ?: "0";
-  $max = $_GET['max'] ?: "10";
-  $quantity = $_GET['cantidad'] ?: "10";
-  $metodo = $_GET['metodo'];
-  $output;
+function render()
+{
+  $metodo_generacion = $_GET['generador'];
+  $metodo_generacion_nombre = "";
+  $array = [];
+  $metodo_ordenacion = $_GET['metodo'];
+  $metodo_ordenacion_nombre = "";
+  $output = '';
 
-  $array = generarArray($min, $max, $quantity);
+  switch ($metodo_generacion) {
+    case 'pregenerado':
+      $metodo_generacion_nombre = 'Array pre-definido en el código';
+      $array = $GLOBALS['array_predefinido'];
+      break;
+    case 'aleatorio':
+      $metodo_generacion_nombre = 'Array generado de forma aleatoria con parámetros definidos por el usuario';
+      $min = $_GET['min'] ?: "0";
+      $max = $_GET['max'] ?: "10";
+      $quantity = $_GET['cantidad'] ?: "10";
+      $array = generarArray($min, $max, $quantity);
+      break;
+    case 'introduccion':
+      $metodo_generacion_nombre = 'Array definido por el usuario';
+      $number_array = json_decode($_GET['numeros'], true);
+      $array = $number_array['numbers'];
+      break;
+    default:
+      break;
+  }
+
+  switch ($metodo_ordenacion) {
+    case 'intercambio':
+      $metodo_ordenacion_nombre = 'Intercambio';
+      break;
+    case 'nuevoArrayAscendente':
+      $metodo_ordenacion_nombre = 'Nuevo array ascendente';
+      break;
+    case 'seleccionDirecta':
+      $metodo_ordenacion_nombre = 'Selección directa';
+      break;
+    case 'burbuja':
+      $metodo_ordenacion_nombre = 'Burbuja';
+      break;
+    case 'quickSort':
+      $metodo_ordenacion_nombre = 'Quick sort';
+      break;
+    default:
+      break;
+  }
 
   if (!$array) {
     echo "<p class='error'>No ha sido posible generar el array; valores introducidos erróneos.</p>";
     return false;
   }
 
-  $output = "<div><h2 class='center'>Conjunto de $quantity números entre el $min y el $max</h2>";
+  if ($metodo_ordenacion === 'todos') {
+    // $output .= '<div class="flex"><div class="flex center column"><h3>Array generado:</h3><p>';
 
-  if ($metodo === "todos") {
-    $output .= "Comparación de los tiempos de ejecución y número de iteraciones de los diferentes algoritmos de ordenación.";
+    // foreach ($array as $key => $value) {
+    //   // $output .= "<tr><td>Posición " . $key + 1 . " = $value</td></tr>";
+    //   $output .= "$value ";
+    // }
+
+    $output .= '</p><p>Comparación de los tiempos de ejecución y número de iteraciones de los diferentes algoritmos de ordenación:</p>';
+
     return $output . todos($array);
   }
 
-  $arrayOrdenado = $metodo($array);
+  $arrayOrdenado = $metodo_ordenacion($array);
   $tiempoEjecucion = array_splice($arrayOrdenado, 0, 1)[0];
   $contadorIteraciones = array_splice($arrayOrdenado, 0, 1)[0];
 
-  $output .= "<div class='flex'><div class=''><h3>Array generado:</h3><table>";
+  $output .= "<p>Método de generación del array: <strong>$metodo_generacion_nombre</strong></p>";
+
+  if ($metodo_generacion == 'aleatorio') {
+    $output = "<p>Conjunto de $quantity números entre el $min y el $max</p>";
+  }
+
+  $output .= "<p>Método de ordenación: <strong>$metodo_ordenacion_nombre</strong></p>";
+
+  $output .= "<p>Tiempo de ejecución: <strong>$tiempoEjecucion</strong></p><p>Iteraciones: <strong>$contadorIteraciones</strong></p>";
+
+  $output .= '<div><div class="flex"><div class="flex center column"><h3>Array generado:</h3><table>';
 
   foreach ($array as $key => $value) {
-    $output .= "<tr><td>Posición " . $key + 1 . " => $value</td></tr>";
+    $output .= "<tr><td>Posición " . $key + 1 . " = $value</td></tr>";
   }
 
-  $output .= "</table>";
-  
-  $output .= "</div><br/><div class='flex center column'><h3>Array ordenado mediante $metodo:</h3>";
+  $output .= '</table>';
 
-  echo "tiempo de ejecución: $tiempoEjecucion<br>iteraciones: $contadorIteraciones";
-  
-  $output .= "<table>";
-  
+  $output .= "</div><br/><div class='flex center column'><h3>Array ordenado:</h3>";
+
+  $output .= '<table>';
+
   foreach ($arrayOrdenado as $key => $value) {
-    $output .= "<tr><td>Posición " . $key + 1 . " => $value</td></tr>";
+    $output .= "<tr><td>Posición " . $key + 1 . " = $value</td></tr>";
   }
-  
-  return $output . "</table></div></div></div>";
+
+  return $output . '</table></div></div></div>';
 }
 
 ##########################################################################
 
-require "./sort.view.php";
-
+require './sort.view.php';
