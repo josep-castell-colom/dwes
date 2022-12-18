@@ -460,7 +460,6 @@ function uploadTxt()
     if (move_uploaded_file($_FILES['fichero']['tmp_name'], $target_file)) {
       return '<p>Carga correcta.</p>';
     } else {
-      var_dump($_FILES['fichero']);
       return '<p>Lo sentimos, ha habido un error en la carga del archivo.</p>';
     }
   }
