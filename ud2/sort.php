@@ -259,7 +259,7 @@ function todos($array)
 
 ##########################################################################
 
-function render()
+function render_get()
 {
   $metodo_generacion = $_GET['generador'];
   $metodo_generacion_nombre = "";
@@ -315,12 +315,11 @@ function render()
   }
 
   if ($metodo_ordenacion === 'todos') {
-    // $output .= '<div class="flex"><div class="flex center column"><h3>Array generado:</h3><p>';
+    $output .= '<div class="flex"><div class="flex center column"><h3>Array generado:</h3><p>';
 
-    // foreach ($array as $key => $value) {
-    //   // $output .= "<tr><td>Posición " . $key + 1 . " = $value</td></tr>";
-    //   $output .= "$value ";
-    // }
+    foreach ($array as $key => $value) {
+      $output .= "$value  ";
+    }
 
     $output .= '</p><p>Comparación de los tiempos de ejecución y número de iteraciones de los diferentes algoritmos de ordenación:</p>';
 
@@ -358,6 +357,113 @@ function render()
   }
 
   return $output . '</table></div></div></div>';
+}
+
+function render_post($target_file)
+{
+  $metodo_generacion_nombre = "Fichero de texto externo";
+  $array = [];
+  $metodo_ordenacion = $_POST['metodo'];
+  $metodo_ordenacion_nombre = "";
+  $output = '';
+
+  $json_file = file_get_contents($target_file);
+  $number_array = json_decode($json_file, true);
+  $array = $number_array['numbers'];
+
+  switch ($metodo_ordenacion) {
+    case 'intercambio':
+      $metodo_ordenacion_nombre = 'Intercambio';
+      break;
+    case 'nuevoArrayAscendente':
+      $metodo_ordenacion_nombre = 'Nuevo array ascendente';
+      break;
+    case 'seleccionDirecta':
+      $metodo_ordenacion_nombre = 'Selección directa';
+      break;
+    case 'burbuja':
+      $metodo_ordenacion_nombre = 'Burbuja';
+      break;
+    case 'quickSort':
+      $metodo_ordenacion_nombre = 'Quick sort';
+      break;
+    default:
+      break;
+  }
+
+  if (!$array) {
+    echo "<p class='error'>No ha sido posible generar el array; valores introducidos erróneos.</p>";
+    return false;
+  }
+
+  if ($metodo_ordenacion === 'todos') {
+    $output .= '<div class="flex"><div class="flex center column"><h3>Array generado:</h3><p>';
+
+    foreach ($array as $key => $value) {
+      $output .= "$value  ";
+    }
+
+    $output .= '</p><p>Comparación de los tiempos de ejecución y número de iteraciones de los diferentes algoritmos de ordenación:</p>';
+
+    return $output . todos($array);
+  }
+
+  $arrayOrdenado = $metodo_ordenacion($array);
+  $tiempoEjecucion = array_splice($arrayOrdenado, 0, 1)[0];
+  $contadorIteraciones = array_splice($arrayOrdenado, 0, 1)[0];
+
+  $output .= "<p>Método de generación del array: <strong>$metodo_generacion_nombre</strong></p>";
+
+  $output .= "<p>Método de ordenación: <strong>$metodo_ordenacion_nombre</strong></p>";
+
+  $output .= "<p>Tiempo de ejecución: <strong>$tiempoEjecucion</strong></p><p>Iteraciones: <strong>$contadorIteraciones</strong></p>";
+
+  $output .= '<div><div class="flex"><div class="flex center column"><h3>Array generado:</h3><table>';
+
+  foreach ($array as $key => $value) {
+    $output .= "<tr><td>Posición " . $key + 1 . " = $value</td></tr>";
+  }
+
+  $output .= '</table>';
+
+  $output .= "</div><br/><div class='flex center column'><h3>Array ordenado:</h3>";
+
+  $output .= '<table>';
+
+  foreach ($arrayOrdenado as $key => $value) {
+    $output .= "<tr><td>Posición " . $key + 1 . " = $value</td></tr>";
+  }
+
+  return $output . '</table></div></div></div>';
+}
+
+function uploadTxt()
+{
+  $target_dir = '/var/www/uploads/';
+  $target_file = $target_dir . basename($_FILES['fichero']['name']);
+  $upload_ok = 1;
+  $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+
+  if (file_exists($target_file)) {
+    echo "<p>El archivo ya existe en el servidor.</p>";
+    return render_post($target_file);
+  }
+
+  if ($file_type != 'txt') {
+    echo "<p>Formato de archivo no admitido; sólo .txt.</p>";
+    $upload_ok = 0;
+  }
+
+  if ($upload_ok == 0) {
+    echo "<p>Carga de fichero fallida.</p>";
+  } else {
+    if (move_uploaded_file($_FILES['fichero']['tmp_name'], $target_file)) {
+      return '<p>Carga correcta.</p>';
+    } else {
+      var_dump($_FILES['fichero']);
+      return '<p>Lo sentimos, ha habido un error en la carga del archivo.</p>';
+    }
+  }
 }
 
 ##########################################################################
