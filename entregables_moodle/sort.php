@@ -449,7 +449,6 @@ function uploadTxt()
   if (file_exists($target_file)) {
     echo "<p>El archivo ya existe en el servidor.</p>";
     return render_post($target_file);
-    // $upload_ok = 0;
   }
 
   if ($file_type != 'txt') {
@@ -461,7 +460,8 @@ function uploadTxt()
     echo "<p>Carga de fichero fallida.</p>";
   } else {
     if (move_uploaded_file($_FILES['fichero']['tmp_name'], $target_file)) {
-      return '<p>Carga correcta.</p>';
+      echo '<p>Carga correcta.</p>';
+      return render_post($target_file);
     } else {
       var_dump($_FILES['fichero']);
       return '<p>Lo sentimos, ha habido un error en la carga del archivo.</p>';

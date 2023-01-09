@@ -458,7 +458,8 @@ function uploadTxt()
     echo "<p>Carga de fichero fallida.</p>";
   } else {
     if (move_uploaded_file($_FILES['fichero']['tmp_name'], $target_file)) {
-      return '<p>Carga correcta.</p>';
+      echo '<p>Carga correcta.</p>';
+      return render_post($target_file);
     } else {
       return '<p>Lo sentimos, ha habido un error en la carga del archivo.</p>';
     }
