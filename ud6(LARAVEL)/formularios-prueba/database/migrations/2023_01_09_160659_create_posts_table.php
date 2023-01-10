@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('titulo');
             $table->string('extracto');
             $table->string('contenido');
+            $table->boolean('caducable');
+            $table->boolean('comentable');
+            $table->enum('acceso', ['privado', 'publico']);
             $table->foreignId('user_id');
             $table->timestamps();
             $table->softDeletes();
