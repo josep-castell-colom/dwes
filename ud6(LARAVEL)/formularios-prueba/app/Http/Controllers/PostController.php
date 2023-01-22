@@ -104,19 +104,17 @@ class PostController extends Controller
             abort(403);
         }
 
-        $validated = $request->validated();
+        // $validated = $request->validated();
+
 
         $caducable = $request->get('caducable') === 'on' ? true : false;
         $comentable = $request->get('comentable') === 'on' ? true : false;
 
-        $post->titulo = $request->get('titulo');
-        $post->extracto = $request->get('extracto');
-        $post->contenido = $request->get('contenido');
         $post->caducable = $caducable;
         $post->comentable = $comentable;
-        $post->acceso = $request->get('acceso');
+        // $post->acceso = $request->get('acceso');
 
-        $post->update();
+        $post->update($request->validated());
 
         return redirect('/posts');
     }

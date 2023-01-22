@@ -31,6 +31,7 @@ class StorePostRequest extends FormRequest
             'titulo' => 'required|max:50',
             'extracto' => 'required|max:100',
             'contenido' => 'required|max:255',
+            'acceso' => 'required',
         ];
     }
 }
