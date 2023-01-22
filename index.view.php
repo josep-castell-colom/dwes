@@ -53,7 +53,7 @@
       <div class="show-section">
         <h2 class="exercice-section-title">Formularios con Laravel</h2>
         <div class="hidden">
-          <a href="./ud6(LARAVEL)/formularios-prueba/public.php"><button>Ir</button></a>
+          <a href="./ud6(LARAVEL)/formularios-prueba/public/"><button>Ir</button></a>
         </div>
       </div>
     </section>
