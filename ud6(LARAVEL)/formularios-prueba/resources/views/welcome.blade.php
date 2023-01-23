@@ -426,7 +426,13 @@
 
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Aplicación CRUD sencilla basada en publicaciones y comentarios usando Laravel y Breeze.
+                                <p>
+                                    Aplicación CRUD sencilla basada en publicaciones y comentarios usando Laravel y
+                                    Breeze.
+                                </p>
+                                <p>
+                                    Iniciar sesión o registrar usuario para continuar.
+                                </p>
                             </div>
                         </div>
                     </div>
