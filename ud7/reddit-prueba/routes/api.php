@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Resources\PostCollection;
-use App\Http\Resources\PostResource;
-use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,12 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
-
-Route::get('posts', function () {
-    return new PostCollection(Post::all());
-});
-
-Route::get('/post/{id}', function ($id) {
-    return new PostResource(Post::findOrFail($id));
 });
